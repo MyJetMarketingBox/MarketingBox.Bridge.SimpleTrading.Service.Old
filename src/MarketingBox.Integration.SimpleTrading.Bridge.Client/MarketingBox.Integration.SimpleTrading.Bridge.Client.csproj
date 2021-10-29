@@ -23,7 +23,7 @@
     <Authors>MyJetWallet</Authors>
     <Company>MyJetWallet</Company>
     <Product>MarketingBox</Product>
-    <RepositoryUrl>https://github.com/MyJetWallet/MarketingBox.Integration.SimpleTrading</RepositoryUrl>
+    <RepositoryUrl>https://github.com/MyJetMarketingBox/MarketingBox.Integration.SimpleTrading</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup>

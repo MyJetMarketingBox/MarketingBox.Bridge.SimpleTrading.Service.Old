@@ -8,19 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Restart Monfex Bridge
-      uses: Myjetwallet/kube-restart-pods@master
+      uses: MyJetWallet/kube-restart-pods@master
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA__ST_TEST }}
         NAMESPACE: marketing-box
         POD: marketing-box-integration-bridge-monfex
     - name: Restart Handelpro Bridge
-      uses: Myjetwallet/kube-restart-pods@master
+      uses: MyJetWallet/kube-restart-pods@master
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA__ST_TEST }}
         NAMESPACE: marketing-box
         POD: marketing-box-integration-bridge-handelpro
     - name: Restart Allianzmarket Bridge
-      uses: Myjetwallet/kube-restart-pods@master
+      uses: MyJetWallet/kube-restart-pods@master
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA__ST_TEST }}
         NAMESPACE: marketing-box
