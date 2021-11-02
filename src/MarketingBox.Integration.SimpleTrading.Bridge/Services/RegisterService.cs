@@ -1,9 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
-using MarketingBox.Integration.Service.Grpc;
+using MarketingBox.Integration.Bridge.Client;
 using MarketingBox.Integration.Service.Grpc.Models.Common;
 using MarketingBox.Integration.Service.Grpc.Models.Leads;
 using MarketingBox.Integration.Service.Grpc.Models.Leads.Contracts;

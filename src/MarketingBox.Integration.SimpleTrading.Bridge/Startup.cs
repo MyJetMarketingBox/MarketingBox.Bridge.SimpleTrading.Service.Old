@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
+using MarketingBox.Integration.Bridge.Client;
 using MarketingBox.Integration.Service.Grpc;
 using MarketingBox.Integration.SimpleTrading.Bridge.Modules;
 using MarketingBox.Integration.SimpleTrading.Bridge.Services;
