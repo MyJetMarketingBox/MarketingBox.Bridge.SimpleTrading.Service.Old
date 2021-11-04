@@ -30,90 +30,12 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
             RegistrationBridgeRequest request)
         {
             _logger.LogInformation("Creating new LeadInfo {@context}", request);
+
+            var brandRequest = MapToApi(request);
+
             try
             {
-                var registerResult =
-                    await _simpleTradingHttpClient.RegisterTraderAsync(new RegisterRequest()
-                    {
-                        FirstName = request.Info.FirstName,
-                        LastName = request.Info.LastName,
-                        Password = request.Info.Password,
-                        Email = request.Info.Email,
-                        Phone = request.Info.Phone,
-                        LangId = request.Info.Language,
-                        Ip = request.Info.Ip,
-                        CountryByIp = request.Info.Country,
-                        AffId = Convert.ToInt32(Program.Settings.BrandAffiliateId),
-                        BrandId = Program.Settings.BrandBrandId,
-                        SecretKey = Program.Settings.BrandAffiliateKey,
-                        ProcessId = DateTimeOffset.UtcNow.ToString(),
-                        CountryOfRegistration = request.Info.Country,
-                    });
-
-                // Failed
-                if (registerResult.IsFailed)
-                {
-                    return FailedMapToGrpc(new Error()
-                    {
-                        Message = registerResult.FailedResult.Message,
-                        Type = ErrorType.Unknown
-                    }, ResultCode.Failed);
-                }
-
-                // Success
-                if (registerResult.SuccessResult.IsSuccessfully())
-                {
-                    // Success
-                    return SuccessMapToGrpc(registerResult.SuccessResult);
-                }
-
-                // Success, but software failure
-                if ((SimpleTradingResultCode)registerResult.SuccessResult.Status ==
-                    SimpleTradingResultCode.UserExists)
-                {
-                    return FailedMapToGrpc(new Error()
-                    {
-                        Message = "Registration already exists",
-                        Type = ErrorType.AlreadyExist
-                    }, ResultCode.Failed);
-                }
-
-                if ((SimpleTradingResultCode)registerResult.SuccessResult.Status ==
-                    SimpleTradingResultCode.InvalidUserNameOrPassword)
-                {
-                    return FailedMapToGrpc(new Error()
-                    {
-                        Message = "Invalid username or password",
-                        Type = ErrorType.InvalidUserNameOrPassword
-                    }, ResultCode.Failed);
-                }
-
-                if ((SimpleTradingResultCode)registerResult.SuccessResult.Status ==
-                    SimpleTradingResultCode.PersonalDataNotValid)
-                {
-                    return FailedMapToGrpc(new Error()
-                    {
-                        Message = "Registration data not valid",
-                        Type = ErrorType.InvalidPersonalData
-                    }, ResultCode.Failed);
-                }
-
-                if ((SimpleTradingResultCode)registerResult.SuccessResult.Status ==
-                    SimpleTradingResultCode.SystemError)
-                {
-                    return FailedMapToGrpc(new Error()
-                    {
-                        Message = "Brand Error",
-                        Type = ErrorType.Unknown
-                    }, ResultCode.Failed);
-                }
-
-                return FailedMapToGrpc(new Error()
-                {
-                    Message = "Unknown Error",
-                    Type = ErrorType.Unknown
-                }, ResultCode.Failed);
-
+                return await RegisterExternalCustomerAsync(brandRequest);
             }
             catch (Exception e)
             {
@@ -125,6 +47,96 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
                     Type = ErrorType.Unknown
                 }, ResultCode.Failed);
             }
+        }
+
+        public async Task<RegistrationBridgeResponse> RegisterExternalCustomerAsync(RegisterRequest brandRequest)
+        {
+            var registerResult =
+                await _simpleTradingHttpClient.RegisterTraderAsync(brandRequest);
+
+            // Failed
+            if (registerResult.IsFailed)
+            {
+                return FailedMapToGrpc(new Error()
+                {
+                    Message = registerResult.FailedResult.Message,
+                    Type = ErrorType.Unknown
+                }, ResultCode.Failed);
+            }
+
+            // Success
+            if (registerResult.SuccessResult.IsSuccessfully())
+            {
+                // Success
+                return SuccessMapToGrpc(registerResult.SuccessResult);
+            }
+
+            // Success, but software failure
+            if ((SimpleTradingResultCode) registerResult.SuccessResult.Status ==
+                SimpleTradingResultCode.UserExists)
+            {
+                return FailedMapToGrpc(new Error()
+                {
+                    Message = "Registration already exists",
+                    Type = ErrorType.AlreadyExist
+                }, ResultCode.Failed);
+            }
+
+            if ((SimpleTradingResultCode) registerResult.SuccessResult.Status ==
+                SimpleTradingResultCode.InvalidUserNameOrPassword)
+            {
+                return FailedMapToGrpc(new Error()
+                {
+                    Message = "Invalid username or password",
+                    Type = ErrorType.InvalidUserNameOrPassword
+                }, ResultCode.Failed);
+            }
+
+            if ((SimpleTradingResultCode) registerResult.SuccessResult.Status ==
+                SimpleTradingResultCode.PersonalDataNotValid)
+            {
+                return FailedMapToGrpc(new Error()
+                {
+                    Message = "Registration data not valid",
+                    Type = ErrorType.InvalidPersonalData
+                }, ResultCode.Failed);
+            }
+
+            if ((SimpleTradingResultCode) registerResult.SuccessResult.Status ==
+                SimpleTradingResultCode.SystemError)
+            {
+                return FailedMapToGrpc(new Error()
+                {
+                    Message = "Brand Error",
+                    Type = ErrorType.Unknown
+                }, ResultCode.Failed);
+            }
+
+            return FailedMapToGrpc(new Error()
+            {
+                Message = "Unknown Error",
+                Type = ErrorType.Unknown
+            }, ResultCode.Failed);
+        }
+
+        private RegisterRequest MapToApi(RegistrationBridgeRequest request)
+        {
+            return new RegisterRequest()
+            {
+                FirstName = request.Info.FirstName,
+                LastName = request.Info.LastName,
+                Password = request.Info.Password,
+                Email = request.Info.Email,
+                Phone = request.Info.Phone,
+                LangId = request.Info.Language,
+                Ip = request.Info.Ip,
+                CountryByIp = request.Info.Country,
+                AffId = Convert.ToInt32(Program.Settings.BrandAffiliateId),
+                BrandId = Program.Settings.BrandBrandId,
+                SecretKey = Program.Settings.BrandAffiliateKey,
+                ProcessId = DateTimeOffset.UtcNow.ToString(),
+                CountryOfRegistration = request.Info.Country,
+            };
         }
 
         public static RegistrationBridgeResponse SuccessMapToGrpc(RegisterResponse brandRegistrationInfo)

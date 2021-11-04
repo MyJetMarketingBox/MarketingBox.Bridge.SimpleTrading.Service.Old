@@ -14,21 +14,6 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Settings
         [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.ElkLogs")]
         public LogElkSettings ElkLogs { get; set; }
 
-        //[YamlProperty("MarketingBoxIntegrationService.PostgresConnectionString")]
-        //public string PostgresConnectionString { get; set; }
-
-        [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.MyNoSqlWriterUrl")]
-        public string MyNoSqlWriterUrl { get; set; }
-
-        //[YamlProperty("MarketingBoxIntegrationService.MyNoSqlReaderHostPort")]
-        //public string MyNoSqlReaderHostPort { get; set; }
-
-        [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.MarketingBoxServiceBusHostPort")]
-        public string MarketingBoxServiceBusHostPort { get; set; }
-
-        [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.IntegrationServiceUrl")]
-        public string IntegrationServiceUrl { get; set; }
-
         [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.Brand.Url")]
         public string BrandUrl { get; set; }
 
@@ -37,7 +22,6 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Settings
 
         [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.Brand.BrandId")]
         public string BrandBrandId { get; set; }
-
 
         [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.Brand.AffiliateKey")]
         public string BrandAffiliateKey { get; set; }

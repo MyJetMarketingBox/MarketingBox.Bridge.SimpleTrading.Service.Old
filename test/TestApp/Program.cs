@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MarketingBox.Integration.Bridge.Client;
+using MarketingBox.Integration.Service.Grpc.Models.Leads;
 using MarketingBox.Integration.Service.Grpc.Models.Leads.Contracts;
 using ProtoBuf.Grpc.Client;
 
@@ -23,10 +24,14 @@ namespace TestApp
                 //TenantId = "test-tenant-id",
             });
 
-            var testTenant = "Test-Tenant";
+            //var testTenant = "Test-Tenant";
             var request = new RegistrationBridgeRequest()
             {
-                //TenantId = testTenant,
+                Info = new RegistrationLeadInfo()
+                {
+                    
+                }
+
             };
             //request.GeneralInfo = new LeadGeneralInfo()
             //{

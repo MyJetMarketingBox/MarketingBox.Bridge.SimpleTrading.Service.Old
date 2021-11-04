@@ -9,8 +9,8 @@
       $(TargetsForTfmSpecificBuildOutput);PackReferencedProjectOutputs
     </TargetsForTfmSpecificBuildOutput>
     <PackageId>MarketingBox.Integration.Service.MyNoSql</PackageId>
-    <Authors>MyJetWallet</Authors>
-    <Company>MyJetWallet</Company>
+    <Authors>MarketingBox</Authors>
+    <Company>MarketingBox</Company>
     <Product>MarketingBox</Product>
   </PropertyGroup>
 

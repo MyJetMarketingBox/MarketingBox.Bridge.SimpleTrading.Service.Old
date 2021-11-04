@@ -25,15 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingBox.Integration.Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingBox.Integration.SimpleTrading.Bridge.Domain", "src\MarketingBox.Integration.SimpleTrading.Bridge.Domain\MarketingBox.Integration.SimpleTrading.Bridge.Domain.csproj", "{6B2D96B3-6D8C-4A87-9B36-22A6846925D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingBox.Integration.SimpleTrading.Bridge.Domain.Models", "src\MarketingBox.Integration.SimpleTrading.Bridge.Domain.Models\MarketingBox.Integration.SimpleTrading.Bridge.Domain.Models.csproj", "{E60F6498-7161-476E-B519-9703F5B86DC9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingBox.Integration.SimpleTrading.Bridge.Grpc", "src\MarketingBox.Integration.SimpleTrading.Bridge.Grpc\MarketingBox.Integration.SimpleTrading.Bridge.Grpc.csproj", "{60D4504F-2038-4EBC-B43A-1231F7DCDBD8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingBox.Integration.SimpleTrading.Bridge.Client", "src\MarketingBox.Integration.SimpleTrading.Bridge.Client\MarketingBox.Integration.SimpleTrading.Bridge.Client.csproj", "{72C2B520-EEB7-444D-97F8-639E3D6F13C1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingBox.Integration.SimpleTrading.Bridge.Postgres", "src\MarketingBox.Integration.SimpleTrading.Bridge.Postgres\MarketingBox.Integration.SimpleTrading.Bridge.Postgres.csproj", "{383F8FCD-D53C-4720-82F4-1C4E327F9E71}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingBox.Integration.SimpleTrading.Bridge.Messages", "src\MarketingBox.Integration.SimpleTrading.Bridge.ServiceBus\MarketingBox.Integration.SimpleTrading.Bridge.Messages.csproj", "{72A91A60-8D6E-423F-AD7C-AFACBEDF5991}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketingBox.Integration.SimpleTrading.Bridge.MyNoSql", "src\MarketingBox.Integration.SimpleTrading.Bridge.MyNoSql\MarketingBox.Integration.SimpleTrading.Bridge.MyNoSql.csproj", "{CD23B436-D600-473D-8833-C61659EFECCF}"
 EndProject
@@ -59,10 +53,6 @@ Global
 		{6B2D96B3-6D8C-4A87-9B36-22A6846925D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B2D96B3-6D8C-4A87-9B36-22A6846925D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B2D96B3-6D8C-4A87-9B36-22A6846925D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E60F6498-7161-476E-B519-9703F5B86DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E60F6498-7161-476E-B519-9703F5B86DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E60F6498-7161-476E-B519-9703F5B86DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E60F6498-7161-476E-B519-9703F5B86DC9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{60D4504F-2038-4EBC-B43A-1231F7DCDBD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{60D4504F-2038-4EBC-B43A-1231F7DCDBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60D4504F-2038-4EBC-B43A-1231F7DCDBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -71,14 +61,6 @@ Global
 		{72C2B520-EEB7-444D-97F8-639E3D6F13C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72C2B520-EEB7-444D-97F8-639E3D6F13C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72C2B520-EEB7-444D-97F8-639E3D6F13C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{383F8FCD-D53C-4720-82F4-1C4E327F9E71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{383F8FCD-D53C-4720-82F4-1C4E327F9E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{383F8FCD-D53C-4720-82F4-1C4E327F9E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{383F8FCD-D53C-4720-82F4-1C4E327F9E71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72A91A60-8D6E-423F-AD7C-AFACBEDF5991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72A91A60-8D6E-423F-AD7C-AFACBEDF5991}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72A91A60-8D6E-423F-AD7C-AFACBEDF5991}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72A91A60-8D6E-423F-AD7C-AFACBEDF5991}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD23B436-D600-473D-8833-C61659EFECCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD23B436-D600-473D-8833-C61659EFECCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD23B436-D600-473D-8833-C61659EFECCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -91,11 +73,8 @@ Global
 		{A6EAE662-7EE9-44CE-9A1A-19751028F533} = {D11EB899-A148-4C9B-B340-B907EF71C4A2}
 		{79B5F90A-72DC-4C14-8D31-4144C762695A} = {D11EB899-A148-4C9B-B340-B907EF71C4A2}
 		{6B2D96B3-6D8C-4A87-9B36-22A6846925D3} = {446301A0-97F2-4921-BA0B-32B76039C73B}
-		{E60F6498-7161-476E-B519-9703F5B86DC9} = {446301A0-97F2-4921-BA0B-32B76039C73B}
 		{60D4504F-2038-4EBC-B43A-1231F7DCDBD8} = {446301A0-97F2-4921-BA0B-32B76039C73B}
 		{72C2B520-EEB7-444D-97F8-639E3D6F13C1} = {EB832FF1-4E01-40ED-BAC4-5ECF70F5C108}
-		{383F8FCD-D53C-4720-82F4-1C4E327F9E71} = {446301A0-97F2-4921-BA0B-32B76039C73B}
-		{72A91A60-8D6E-423F-AD7C-AFACBEDF5991} = {446301A0-97F2-4921-BA0B-32B76039C73B}
 		{CD23B436-D600-473D-8833-C61659EFECCF} = {446301A0-97F2-4921-BA0B-32B76039C73B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

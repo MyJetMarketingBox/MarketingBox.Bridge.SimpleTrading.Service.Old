@@ -5,19 +5,4 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Boxes\**" />
-    <Compile Remove="Brands\**" />
-    <Compile Remove="CampaignBoxes\**" />
-    <Compile Remove="Campaigns\**" />
-    <EmbeddedResource Remove="Boxes\**" />
-    <EmbeddedResource Remove="Brands\**" />
-    <EmbeddedResource Remove="CampaignBoxes\**" />
-    <EmbeddedResource Remove="Campaigns\**" />
-    <None Remove="Boxes\**" />
-    <None Remove="Brands\**" />
-    <None Remove="CampaignBoxes\**" />
-    <None Remove="Campaigns\**" />
-  </ItemGroup>
-
 </Project>

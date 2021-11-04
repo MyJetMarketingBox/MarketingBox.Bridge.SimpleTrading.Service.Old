@@ -9,14 +9,9 @@
       $(TargetsForTfmSpecificBuildOutput);PackReferencedProjectOutputs
     </TargetsForTfmSpecificBuildOutput>
     <PackageId>MarketingBox.Integration.Service.Messages</PackageId>
-    <Authors>MyJetWallet</Authors>
-    <Company>MyJetWallet</Company>
+    <Authors>MarketingBox</Authors>
+    <Company>MarketingBox</Company>
     <Product>MarketingBox</Product>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MyJetWallet.Sdk.Service" Version="1.6.10" />
-    <PackageReference Include="MyJetWallet.Sdk.ServiceBus" Version="1.2.3" />
-  </ItemGroup>
 
 </Project>

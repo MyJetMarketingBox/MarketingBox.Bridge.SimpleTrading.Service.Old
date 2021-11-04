@@ -16,10 +16,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Include="MyJetWallet.Sdk.GrpcMetrics" Version="2.0.2" />
     <PackageReference Include="MyJetWallet.Sdk.GrpcSchema" Version="1.0.6" />
-    <PackageReference Include="MyJetWallet.Sdk.NoSql" Version="1.4.0" />
-    <PackageReference Include="MyJetWallet.Sdk.Postgres" Version="1.2.0" />
     <PackageReference Include="MyJetWallet.Sdk.Service" Version="1.6.10" />
-    <PackageReference Include="MyJetWallet.Sdk.ServiceBus" Version="1.2.3" />
     <PackageReference Include="MyNoSqlServer.Abstractions" Version="1.0.5" />
     <PackageReference Include="MyNoSqlServer.DataWriter" Version="1.4.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -32,10 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MarketingBox.Integration.SimpleTrading.Bridge.Postgres\MarketingBox.Integration.SimpleTrading.Bridge.Postgres.csproj" />
     <ProjectReference Include="..\MarketingBox.Integration.SimpleTrading.Bridge.Domain\MarketingBox.Integration.SimpleTrading.Bridge.Domain.csproj" />
-    <ProjectReference Include="..\MarketingBox.Integration.SimpleTrading.Bridge.MyNoSql\MarketingBox.Integration.SimpleTrading.Bridge.MyNoSql.csproj" />
-    <ProjectReference Include="..\MarketingBox.Integration.SimpleTrading.Bridge.ServiceBus\MarketingBox.Integration.SimpleTrading.Bridge.Messages.csproj" />
   </ItemGroup>
 
   <ItemGroup>
