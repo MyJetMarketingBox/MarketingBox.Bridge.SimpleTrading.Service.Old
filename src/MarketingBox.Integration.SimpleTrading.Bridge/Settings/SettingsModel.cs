@@ -7,8 +7,8 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Settings
         [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.SeqServiceUrl")]
         public string SeqServiceUrl { get; set; }
 
-        [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.JaegerApiUrl")]
-        public string JaegerApiUrl { get; set; }
+        [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.JaegerUrl")]
+        public string JaegerUrl { get; set; }
 
         [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.Brand.Url")]
         public string BrandUrl { get; set; }
