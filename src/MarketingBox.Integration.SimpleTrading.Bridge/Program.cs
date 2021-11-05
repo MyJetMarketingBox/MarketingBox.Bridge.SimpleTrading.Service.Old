@@ -36,9 +36,8 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge
 
             Settings = SettingsReader.GetSettings<SettingsModel>(SettingsFileName);
 
-            using var loggerFactory = LogConfigurator.ConfigureElk("MarketingBox.Integration.SimpleTrading.Bridge",
-                Settings.SeqServiceUrl,
-                Settings.ElkLogs);
+            using var loggerFactory = LogConfigurator.Configure("MarketingBox.Integration.SimpleTrading.Bridge",
+                Settings.SeqServiceUrl);
 
             var logger = loggerFactory.CreateLogger<Program>();
 

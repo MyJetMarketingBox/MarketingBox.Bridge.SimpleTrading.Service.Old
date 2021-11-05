@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -21,6 +22,11 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Co
                 {
                     var response = JsonConvert.DeserializeObject<TSuccessResponse>(resultData);
                     return Response<TSuccessResponse, TFailedResponse>.CreateSuccess(response);
+                }
+                else
+                if (httpResponseMessage.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new Exception(resultData);
                 }
                 else
                 {

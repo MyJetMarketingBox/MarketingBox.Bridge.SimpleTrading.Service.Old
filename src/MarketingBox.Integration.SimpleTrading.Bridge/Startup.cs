@@ -24,7 +24,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge
 
             services.AddHostedService<ApplicationLifetimeManager>();
 
-            services.AddMyTelemetry("SP-", Program.Settings.ZipkinUrl);
+            services.AddMyTelemetry("MB-", Program.Settings.JaegerApiUrl);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

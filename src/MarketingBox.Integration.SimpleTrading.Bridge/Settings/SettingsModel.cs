@@ -1,5 +1,4 @@
-﻿using MyJetWallet.Sdk.Service;
-using MyYamlParser;
+﻿using MyYamlParser;
 
 namespace MarketingBox.Integration.SimpleTrading.Bridge.Settings
 {
@@ -8,11 +7,8 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Settings
         [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.SeqServiceUrl")]
         public string SeqServiceUrl { get; set; }
 
-        [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.ZipkinUrl")]
-        public string ZipkinUrl { get; set; }
-
-        [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.ElkLogs")]
-        public LogElkSettings ElkLogs { get; set; }
+        [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.JaegerApiUrl")]
+        public string JaegerApiUrl { get; set; }
 
         [YamlProperty("MarketingBoxIntegrationSimpleTradingBridge.Brand.Url")]
         public string BrandUrl { get; set; }

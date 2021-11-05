@@ -10,6 +10,7 @@ using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations;
 using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Contracts.Enums;
 using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Contracts.Requests;
 using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Contracts.Responses;
+using MarketingBox.Integration.SimpleTrading.Bridge.Settings;
 using Microsoft.Extensions.Logging;
 
 namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
@@ -18,12 +19,14 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
     {
         private readonly ILogger<RegisterService> _logger;
         private readonly ISimpleTradingHttpClient _simpleTradingHttpClient;
+        private readonly SettingsModel _settingsModel;
 
         public RegisterService(ILogger<RegisterService> logger,
-            ISimpleTradingHttpClient simpleTradingHttpClient)
+            ISimpleTradingHttpClient simpleTradingHttpClient, SettingsModel settingsModel)
         {
             _logger = logger;
             _simpleTradingHttpClient = simpleTradingHttpClient;
+            _settingsModel = settingsModel;
         }
 
         public async Task<RegistrationBridgeResponse> RegisterCustomerAsync(
@@ -31,7 +34,9 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
         {
             _logger.LogInformation("Creating new LeadInfo {@context}", request);
 
-            var brandRequest = MapToApi(request);
+            var brandRequest = MapToApi(request, _settingsModel.BrandBrandId, 
+                Convert.ToInt32(_settingsModel.BrandAffiliateId), _settingsModel.BrandAffiliateKey,
+                DateTimeOffset.UtcNow.ToString());
 
             try
             {
@@ -43,7 +48,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
 
                 return FailedMapToGrpc(new Error()
                 {
-                    Message = "Brand response parse error",
+                    Message = "Brand response error",
                     Type = ErrorType.Unknown
                 }, ResultCode.Failed);
             }
@@ -65,7 +70,9 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
             }
 
             // Success
-            if (registerResult.SuccessResult.IsSuccessfully())
+            if (registerResult.SuccessResult.IsSuccessfully() &&
+                (SimpleTradingResultCode)registerResult.SuccessResult.Status ==
+                SimpleTradingResultCode.Ok)
             {
                 // Success
                 return SuccessMapToGrpc(registerResult.SuccessResult);
@@ -119,7 +126,8 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
             }, ResultCode.Failed);
         }
 
-        private RegisterRequest MapToApi(RegistrationBridgeRequest request)
+        private RegisterRequest MapToApi(RegistrationBridgeRequest request,
+            string authBrandId, int authAffId, string authAffApiKey, string requestId)
         {
             return new RegisterRequest()
             {
@@ -131,10 +139,10 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
                 LangId = request.Info.Language,
                 Ip = request.Info.Ip,
                 CountryByIp = request.Info.Country,
-                AffId = Convert.ToInt32(Program.Settings.BrandAffiliateId),
-                BrandId = Program.Settings.BrandBrandId,
-                SecretKey = Program.Settings.BrandAffiliateKey,
-                ProcessId = DateTimeOffset.UtcNow.ToString(),
+                AffId = authAffId,
+                BrandId = authBrandId,
+                SecretKey = authAffApiKey,
+                ProcessId = requestId,
                 CountryOfRegistration = request.Info.Country,
             };
         }

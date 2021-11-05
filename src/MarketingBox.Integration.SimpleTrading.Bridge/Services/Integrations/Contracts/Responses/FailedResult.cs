@@ -6,6 +6,5 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Co
     {
         [JsonProperty("message")] public string Message { get; set; }
         [JsonProperty("statusCode")] public int StatusCode { get; set; }
-        [JsonProperty("fieldError")] public object FieldError { get; set; }
     }
 }

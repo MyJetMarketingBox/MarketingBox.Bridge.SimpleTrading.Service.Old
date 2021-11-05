@@ -24,6 +24,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations
                 .AppendPathSegments("integration", "v1", "auth", "register")
                 .WithHeader("Content-Type", "application/json")
                 .AllowHttpStatus("400")
+                .AllowHttpStatus("401")
                 .PostJsonAsync(request);
             return await result.ResponseMessage.DeserializeTo<RegisterResponse, FailRegisterResponse>();
         }
