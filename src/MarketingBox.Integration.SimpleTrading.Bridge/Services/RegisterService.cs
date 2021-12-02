@@ -2,9 +2,7 @@
 using System.Threading.Tasks;
 using MarketingBox.Integration.Bridge.Client;
 using MarketingBox.Integration.Service.Grpc.Models.Common;
-using MarketingBox.Integration.Service.Grpc.Models.Leads;
-using MarketingBox.Integration.Service.Grpc.Models.Leads.Contracts;
-using MarketingBox.Integration.Service.Grpc.Models.Reporting;
+using MarketingBox.Integration.Service.Grpc.Models.Registrations.Contracts.Bridge;
 using MarketingBox.Integration.SimpleTrading.Bridge.Domain.Extensions;
 using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations;
 using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Contracts.Enums;
@@ -29,8 +27,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
             _settingsModel = settingsModel;
         }
 
-        public async Task<RegistrationBridgeResponse> RegisterCustomerAsync(
-            RegistrationBridgeRequest request)
+        public async Task<RegistrationResponse> SendRegistrationAsync(RegistrationRequest request)
         {
             _logger.LogInformation("Creating new LeadInfo {@context}", request);
 
@@ -54,7 +51,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
             }
         }
 
-        public async Task<RegistrationBridgeResponse> RegisterExternalCustomerAsync(RegisterRequest brandRequest)
+        public async Task<RegistrationResponse> RegisterExternalCustomerAsync(RegisterRequest brandRequest)
         {
             var registerResult =
                 await _simpleTradingHttpClient.RegisterTraderAsync(brandRequest);
@@ -126,7 +123,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
             }, ResultCode.Failed);
         }
 
-        private RegisterRequest MapToApi(RegistrationBridgeRequest request,
+        private RegisterRequest MapToApi(RegistrationRequest request,
             string authBrandId, int authAffId, string authAffApiKey, string requestId)
         {
             return new RegisterRequest()
@@ -147,13 +144,13 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
             };
         }
 
-        public static RegistrationBridgeResponse SuccessMapToGrpc(RegisterResponse brandRegistrationInfo)
+        public static RegistrationResponse SuccessMapToGrpc(RegisterResponse brandRegistrationInfo)
         {
-            return new RegistrationBridgeResponse()
+            return new RegistrationResponse()
             {
                 ResultCode = ResultCode.CompletedSuccessfully,
                 ResultMessage = EnumExtensions.GetDescription((ResultCode)ResultCode.CompletedSuccessfully),
-                RegistrationInfo = new RegisteredLeadInfo()
+                CustomerInfo = new Service.Grpc.Models.Registrations.CustomerInfo()
                 {
                     CustomerId = brandRegistrationInfo.TraderId,
                     LoginUrl = brandRegistrationInfo.RedirectUrl,
@@ -162,9 +159,9 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
             };
         }
 
-        public static RegistrationBridgeResponse FailedMapToGrpc(Error error, ResultCode code)
+        public static RegistrationResponse FailedMapToGrpc(Error error, ResultCode code)
         {
-            return new RegistrationBridgeResponse()
+            return new RegistrationResponse()
             {
                 ResultCode = code,
                 ResultMessage = EnumExtensions.GetDescription((ResultCode)code),
@@ -172,17 +169,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
             };
         }
 
-        public Task<BridgeCountersResponse> GetBridgeCountersPerPeriodAsync(CountersRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<RegistrationsResponse> GetRegistrationsPerPeriodAsync(RegistrationsRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<DepositsResponse> GetDepositsPerPeriodAsync(DepositsRequest request)
+        public Task<ReportingResponse> GetRegistrationsPerPeriodAsync(ReportingRequest request)
         {
             throw new NotImplementedException();
         }

@@ -3,8 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using MarketingBox.Integration.Service.Grpc.Models.Common;
-using MarketingBox.Integration.Service.Grpc.Models.Leads;
-using MarketingBox.Integration.Service.Grpc.Models.Leads.Contracts;
+using MarketingBox.Integration.Service.Grpc.Models.Registrations.Contracts.Bridge;
 using MarketingBox.Integration.SimpleTrading.Bridge.Services;
 using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations;
 using MarketingBox.Integration.SimpleTrading.Bridge.Settings;
@@ -60,9 +59,9 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
         public async Task ServiceRequaredAuthHttpSend()
         {
             var dt = DateTime.UtcNow;
-            var bridgeRequest = new RegistrationBridgeRequest()
+            var bridgeRequest = new RegistrationRequest()
             {
-                Info = new RegistrationLeadInfo()
+                Info = new Service.Grpc.Models.Registrations.RegistrationInfo()
                 {
                     FirstName = "Yuriy",
                     LastName = "Test",
@@ -74,7 +73,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
                     Language = "EN",
                 }
             };
-            var result = await _registerService.RegisterCustomerAsync(bridgeRequest);
+            var result = await _registerService.SendRegistrationAsync(bridgeRequest);
 
             Assert.AreEqual(ResultCode.Failed, result.ResultCode);
         }
