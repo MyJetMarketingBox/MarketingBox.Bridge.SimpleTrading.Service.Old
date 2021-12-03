@@ -19,8 +19,8 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
         private SettingsModel _settingsModel;
         private SimpleTradingHttpClient _httpClient;
         private static Random random = new Random();
-        private ILogger<RegisterService> _logger;
-        private RegisterService _registerService;
+        private ILogger<BridgeService> _logger;
+        private BridgeService _registerService;
 
         public void Dispose()
         {
@@ -50,8 +50,8 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
 
             _unitTestActivity = new Activity("UnitTest").Start();
             _httpClient = new SimpleTradingHttpClient(_settingsModel.BrandUrl);
-            _logger = Mock.Of<ILogger<RegisterService>>();
-            _registerService = new RegisterService(_logger, _httpClient, _settingsModel);
+            _logger = Mock.Of<ILogger<BridgeService>>();
+            _registerService = new BridgeService(_logger, _httpClient, _settingsModel);
         }
 
 

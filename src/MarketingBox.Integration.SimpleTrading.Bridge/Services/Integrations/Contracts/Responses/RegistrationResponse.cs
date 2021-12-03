@@ -2,7 +2,7 @@ using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Contra
 
 namespace MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Contracts.Responses
 {
-    public class RegisterResponse
+    public class RegistrationResponse
     {
         public string TraderId { get; set; }
         public string Token { get; set; }

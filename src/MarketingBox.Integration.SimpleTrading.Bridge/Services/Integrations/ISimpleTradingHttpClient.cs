@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Contracts.Requests;
 using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Contracts.Responses;
@@ -12,16 +13,29 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<Response<RegisterResponse, FailRegisterResponse>> RegisterTraderAsync(
-            RegisterRequest request);
+        Task<Response<RegistrationResponse, FailRegisterResponse>> RegisterTraderAsync(
+            RegistrationRequest request);
 
         /// <summary>
         /// It allows to get previous transaction basic information
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<Response<StatisticResponse, FailRegisterResponse>> GetReportStatisticAsync(
-            StatisticRequest request);
-
+        Task<Response<ReportCountersResponse, FailRegisterResponse>> GetCountsAsync(
+            ReportCountersRequest request);
+        /// <summary>
+        /// It allows to get registration reports
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<Response<ReportRegistrationResponse, FailRegisterResponse>> GetRegistrationsAsync(
+            ReportRequest request);
+        /// <summary>
+        /// It allows to get previous transaction basic information
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<Response<ReportDepositResponse, FailRegisterResponse>> GetDepositsAsync(
+            ReportRequest request);
     }
 }

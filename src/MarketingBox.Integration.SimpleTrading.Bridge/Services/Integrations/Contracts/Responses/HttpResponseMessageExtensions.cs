@@ -43,5 +43,40 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Co
                 throw;
             }
         }
+
+        //public static async Task<ResponseList<TSuccessResponse, TFailedResponse>> DeserializeListTo<TSuccessResponse,
+        //    TFailedResponse>(this HttpResponseMessage httpResponseMessage)
+        //where TSuccessResponse : IReadOnlyList<TSuccessResponse>
+        //where TFailedResponse : class
+        //{
+        //    string resultData = await httpResponseMessage.Content.ReadAsStringAsync();
+        //    Log.Logger.Information("SimpleTrading brand return response : {@RawResult}", resultData);
+        //    try
+        //    {
+        //        if (httpResponseMessage.IsSuccessStatusCode)
+        //        {
+        //            var response = JsonConvert.DeserializeObject<TSuccessResponse>(resultData);
+        //            return ResponseList<TSuccessResponse, TFailedResponse>.CreateSuccess(response);
+        //        }
+        //        else
+        //        if (httpResponseMessage.StatusCode == HttpStatusCode.Unauthorized)
+        //        {
+        //            throw new Exception(resultData);
+        //        }
+        //        else
+        //        {
+        //            if (typeof(TFailedResponse) == typeof(string))
+        //                return ResponseList<TSuccessResponse, TFailedResponse>.CreateFailed(resultData as TFailedResponse);
+
+        //            var response = JsonConvert.DeserializeObject<TFailedResponse>(resultData);
+        //            return ResponseList<TSuccessResponse, TFailedResponse>.CreateFailed(response);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Log.Logger.Error(e, "DeserializeTo failed. Response : {resultData}", resultData);
+        //        throw;
+        //    }
+        //}
     }
 }

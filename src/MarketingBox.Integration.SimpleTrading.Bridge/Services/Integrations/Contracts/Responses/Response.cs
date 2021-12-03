@@ -29,4 +29,36 @@
             return new Response<TSuccessResult, TFailedResult>(result);
         }
     }
+
+    //public class ResponseList<TSuccessResult, TFailedResult>
+    //where TSuccessResult : IReadOnlyList<TSuccessResult>
+    //where TFailedResult : class
+    //{
+    //    protected ResponseList(TFailedResult failedResult)
+    //    {
+    //        FailedResult = failedResult;
+    //    }
+
+    //    protected ResponseList(TSuccessResult successResult)
+    //    {
+    //        SuccessResult = successResult;
+    //    }
+
+    //    public IReadOnlyList<TSuccessResult> SuccessResult { get; }
+    //    public TFailedResult FailedResult { get; }
+
+    //    public bool IsFailed => FailedResult != null;
+
+    //    public int Count => throw new NotImplementedException();
+
+    //    public static ResponseList<TSuccessResult, TFailedResult> CreateFailed(TFailedResult result)
+    //    {
+    //        return new ResponseList<TSuccessResult, TFailedResult>(result);
+    //    }
+
+    //    public static ResponseList<TSuccessResult, TFailedResult> CreateSuccess(TSuccessResult result)
+    //    {
+    //        return new ResponseList<TSuccessResult, TFailedResult>(result);
+    //    }
+    //}
 }

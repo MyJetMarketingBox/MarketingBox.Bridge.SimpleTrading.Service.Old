@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Contracts.Requests
 {
-    public class RegisterRequest
+    public class RegistrationRequest
     {
         [LogMasked]
         [JsonProperty("firstName")]

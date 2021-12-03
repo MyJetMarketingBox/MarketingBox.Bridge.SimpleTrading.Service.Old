@@ -13,14 +13,14 @@ using NUnit.Framework;
 
 namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
 {
-    public class TestHttpRequest
+    public class TestHttpCreateRegistration
     {
         private Activity _unitTestActivity;
         private SettingsModel _settingsModel;
         private SimpleTradingHttpClient _httpClient;
         private static Random random = new Random();
-        private ILogger<RegisterService> _logger;
-        private RegisterService _registerService;
+        private ILogger<BridgeService> _logger;
+        private BridgeService _registerService;
 
         public void Dispose()
         {
@@ -49,15 +49,15 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
             
             _unitTestActivity = new Activity("UnitTest").Start();
             _httpClient = new SimpleTradingHttpClient(_settingsModel.BrandUrl);
-            _logger = Mock.Of<ILogger<RegisterService>>();
-            _registerService = new RegisterService(_logger, _httpClient, _settingsModel);
+            _logger = Mock.Of<ILogger<BridgeService>>();
+            _registerService = new BridgeService(_logger, _httpClient, _settingsModel);
         }
 
         [Test]
         public async Task DirectHttpSend()
         {
             var dt = DateTime.UtcNow;
-            var request = new RegisterRequest()
+            var request = new RegistrationRequest()
             {
                 AffId = Convert.ToInt32(_settingsModel.BrandAffiliateId),
                 BrandId = _settingsModel.BrandBrandId,
@@ -87,7 +87,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
         public async Task ServiceHttpSend()
         {
             var dt = DateTime.UtcNow;
-            var request = new RegisterRequest()
+            var request = new RegistrationRequest()
             {
                 AffId = Convert.ToInt32(_settingsModel.BrandAffiliateId),
                 BrandId = _settingsModel.BrandBrandId,
@@ -123,7 +123,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
             var processId1 = dt1.ToString("yyyy-MM-ddThh:mm:ss.fffZ") + " " + email;
             var processId2 = dt2.ToString("yyyy-MM-ddThh:mm:ss.fffZ") + " " + email;
 
-            var request1 = new RegisterRequest()
+            var request1 = new RegistrationRequest()
             {
                 AffId = Convert.ToInt32(_settingsModel.BrandAffiliateId),
                 BrandId = _settingsModel.BrandBrandId,
@@ -145,7 +145,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
                 RedirectedFromUrl = @"https://redirectedFromUrl.online/nb_1st_pfizer_hp_st_pl/?sub_id=101211&offer_id=28"
             };
 
-            var request2 = new RegisterRequest()
+            var request2 = new RegistrationRequest()
             {
                 AffId = Convert.ToInt32(_settingsModel.BrandAffiliateId),
                 BrandId = _settingsModel.BrandBrandId,
@@ -182,7 +182,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
             var processId = dt.ToString("yyyy-MM-ddThh:mm:ss.fffZ") + " " + email;
 
 
-            var request1 = new RegisterRequest()
+            var request1 = new RegistrationRequest()
             {
                 AffId = Convert.ToInt32(_settingsModel.BrandAffiliateId),
                 BrandId = _settingsModel.BrandBrandId,
@@ -204,7 +204,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
                 RedirectedFromUrl = @"https://redirectedFromUrl.online/nb_1st_pfizer_hp_st_pl/?sub_id=101211&offer_id=28"
             };
 
-            var request2 = new RegisterRequest()
+            var request2 = new RegistrationRequest()
             {
                 AffId = Convert.ToInt32(_settingsModel.BrandAffiliateId),
                 BrandId = _settingsModel.BrandBrandId,
