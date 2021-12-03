@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MarketingBox.Integration.Bridge.Client;
-using MarketingBox.Integration.Service.Grpc.Models.Leads;
-using MarketingBox.Integration.Service.Grpc.Models.Leads.Contracts;
 using ProtoBuf.Grpc.Client;
 
 namespace TestApp
@@ -19,20 +17,20 @@ namespace TestApp
             var factory = new BridgeServiceClientFactory("http://localhost:12347");
             var client = factory.GetBridgeService();
 
-            var check = await client.RegisterCustomerAsync(new RegistrationBridgeRequest()
-            {
-                //TenantId = "test-tenant-id",
-            });
+            //var check = await client.SendRegistrationAsync(new RegistrationBridgeRequest()
+            //{
+            //    //TenantId = "test-tenant-id",
+            //});
 
-            //var testTenant = "Test-Tenant";
-            var request = new RegistrationBridgeRequest()
-            {
-                Info = new RegistrationLeadInfo()
-                {
+            ////var testTenant = "Test-Tenant";
+            //var request = new RegistrationBridgeRequest()
+            //{
+            //    Info = new RegistrationLeadInfo()
+            //    {
                     
-                }
+            //    }
 
-            };
+            //};
             //request.GeneralInfo = new LeadGeneralInfo()
             //{
             //    //Currency = Currency.CHF,
