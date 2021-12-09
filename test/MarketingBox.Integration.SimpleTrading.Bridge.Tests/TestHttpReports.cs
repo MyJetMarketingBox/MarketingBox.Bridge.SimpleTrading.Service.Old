@@ -114,7 +114,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
                 DateFrom = dt.AddMonths(-1),
                 DateTo = dt,
                 PageIndex = 1,
-                PageCount = 100,
+                PageSize = 100,
             };
 
             var result = await _registerService.GetRegistrationsPerPeriodAsync(request);
@@ -130,7 +130,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
                 DateFrom = dt.AddMonths(-1),
                 DateTo = dt,
                 PageIndex = 1,
-                PageCount = 100,
+                PageSize = 100,
             };
 
             var result = await _registerService.GetRegistrationsPerPeriodAsync(request);
@@ -146,7 +146,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
                 DateFrom = dt.AddMonths(-1),
                 DateTo = dt,
                 PageIndex = 1,
-                PageCount = 100,
+                PageSize = 100,
             };
 
             var result = await _registerService.GetDepositorsPerPeriodAsync(request);
@@ -162,7 +162,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
                 DateFrom = dt.AddMonths(-1),
                 DateTo = dt,
                 PageIndex = 1,
-                PageCount = 100,
+                PageSize = 100,
             };
 
             var result = await _registerService.GetDepositorsPerPeriodAsync(request);

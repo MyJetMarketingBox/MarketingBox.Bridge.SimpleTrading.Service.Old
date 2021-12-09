@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using MarketingBox.Integration.Bridge.Client;
+using MarketingBox.Integration.Service.Domain.Registrations;
 using MarketingBox.Integration.Service.Grpc.Models.Common;
 using MarketingBox.Integration.Service.Grpc.Models.Registrations.Contracts.Bridge;
 using MarketingBox.Integration.SimpleTrading.Bridge.Domain.Extensions;
@@ -31,7 +32,8 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Service.Grpc.Models.Registrations.Contracts.Bridge.RegistrationResponse> SendRegistrationAsync(Service.Grpc.Models.Registrations.Contracts.Bridge.RegistrationRequest request)
+        public async Task<Service.Grpc.Models.Registrations.Contracts.Bridge.RegistrationResponse> SendRegistrationAsync(
+            Service.Grpc.Models.Registrations.Contracts.Bridge.RegistrationRequest request)
         {
             _logger.LogInformation("Creating new LeadInfo {@context}", request);
 
@@ -55,7 +57,8 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
             }
         }
 
-        public async Task<Service.Grpc.Models.Registrations.Contracts.Bridge.RegistrationResponse> RegisterExternalCustomerAsync(Integrations.Contracts.Requests.RegistrationRequest brandRequest)
+        public async Task<Service.Grpc.Models.Registrations.Contracts.Bridge.RegistrationResponse> RegisterExternalCustomerAsync(
+            Integrations.Contracts.Requests.RegistrationRequest brandRequest)
         {
             var registerResult =
                 await _simpleTradingHttpClient.RegisterTraderAsync(brandRequest);
@@ -222,7 +225,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
                 Year = request.DateFrom.Year,
                 Month = request.DateFrom.Month,
                 Page = request.PageIndex,
-                PageSize = request.PageCount,
+                PageSize = request.PageSize,
                 ApiKey = authAffApiKey
             };
         }
@@ -239,11 +242,11 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
         {
             var registrations = brandRegistrations.Items.Select(report => new Service.Grpc.Models.Registrations.RegistrationReporting
             {
-                CrmStatus = report.CrmStatus,
+                Crm = MapCrmStatus(report.CrmStatus),
                 CustomerEmail = report.Email,
                 CustomerId = report.UserId,
                 CreatedAt = report.CreatedAt,
-                CrmStatusChangedAt = report.CreatedAt
+                CrmUpdatedAt = DateTime.UtcNow
             }).ToList();
 
             return new Service.Grpc.Models.Registrations.Contracts.Bridge.RegistrationsReportingResponse()
@@ -252,6 +255,57 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Services
                 //ResultMessage = EnumExtensions.GetDescription((ResultCode)ResultCode.CompletedSuccessfully),
                 Items = registrations
             };
+        }
+
+        public static CrmStatus MapCrmStatus(string status)
+        {
+            switch (status.ToLower())
+            {
+                case "new":
+                    return CrmStatus.New;
+
+                case "fullyactivated":
+                    return CrmStatus.FullyActivated;
+
+                case "highpriority":
+                    return CrmStatus.HighPriority;
+
+                case "callback":
+                    return CrmStatus.Callback;
+
+                case "failedexpectation":
+                    return CrmStatus.FailedExpectation;
+
+                case "notvaliddeletedaccount":
+                case "notvalidwrongnumber":
+                case "notvalidnophonenumber":
+                case "notvalidduplicateuser":
+                case "notvalidtestlead":
+                case "notvalidunderage":
+                case "notvalidnolanguagesupport":
+                case "notvalidneverregistered":
+                case "notvalidnoneligiblecountries":
+                    return CrmStatus.NotValid;
+
+                case "notinterested":
+                    return CrmStatus.NotInterested;
+
+                case "transfer":
+                    return CrmStatus.Transfer;
+
+                case "followup":
+                    return CrmStatus.FollowUp;
+
+                case "noanswer":
+                case "autocall":
+                    return CrmStatus.NA;
+
+                case "conversionrenew":
+                    return CrmStatus.ConversionRenew;
+
+                default:
+                    return CrmStatus.Unknown;
+            }
         }
 
         /// <summary>
