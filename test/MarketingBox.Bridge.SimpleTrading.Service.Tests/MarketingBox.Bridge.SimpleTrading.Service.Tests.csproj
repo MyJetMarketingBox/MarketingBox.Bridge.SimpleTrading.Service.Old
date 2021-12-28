@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MarketingBox.Integration.SimpleTrading.Bridge\MarketingBox.Bridge.SimpleTrading.Service.csproj" />
+    <ProjectReference Include="..\..\src\MarketingBox.Bridge.SimpleTrading.Service\MarketingBox.Bridge.SimpleTrading.Service.csproj" />
   </ItemGroup>
 
 </Project>
