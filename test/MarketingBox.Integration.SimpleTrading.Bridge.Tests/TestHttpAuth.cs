@@ -2,16 +2,16 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using MarketingBox.Bridge.SimpleTrading.Service.Services;
+using MarketingBox.Bridge.SimpleTrading.Service.Services.Integrations;
+using MarketingBox.Bridge.SimpleTrading.Service.Settings;
 using MarketingBox.Integration.Service.Grpc.Models.Common;
 using MarketingBox.Integration.Service.Grpc.Models.Registrations.Contracts.Bridge;
-using MarketingBox.Integration.SimpleTrading.Bridge.Services;
-using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations;
-using MarketingBox.Integration.SimpleTrading.Bridge.Settings;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
+namespace MarketingBox.Bridge.SimpleTrading.Service.Tests
 {
     public class TestHttpAuth
     {
@@ -61,7 +61,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
             var dt = DateTime.UtcNow;
             var bridgeRequest = new RegistrationRequest()
             {
-                Info = new Service.Grpc.Models.Registrations.RegistrationInfo()
+                Info = new MarketingBox.Integration.Service.Grpc.Models.Registrations.RegistrationInfo()
                 {
                     FirstName = "Yuriy",
                     LastName = "Test",

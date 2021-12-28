@@ -2,16 +2,16 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using MarketingBox.Bridge.SimpleTrading.Service.Services;
+using MarketingBox.Bridge.SimpleTrading.Service.Services.Integrations;
+using MarketingBox.Bridge.SimpleTrading.Service.Services.Integrations.Contracts.Requests;
+using MarketingBox.Bridge.SimpleTrading.Service.Settings;
 using MarketingBox.Integration.Service.Grpc.Models.Common;
-using MarketingBox.Integration.SimpleTrading.Bridge.Services;
-using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations;
-using MarketingBox.Integration.SimpleTrading.Bridge.Services.Integrations.Contracts.Requests;
-using MarketingBox.Integration.SimpleTrading.Bridge.Settings;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
+namespace MarketingBox.Bridge.SimpleTrading.Service.Tests
 {
     public class TestHttpCreateRegistration
     {
@@ -46,7 +46,7 @@ namespace MarketingBox.Integration.SimpleTrading.Bridge.Tests
                 BrandBrandId = "HandelPro-ST",
                 BrandUrl = "https://integration-test.mnftx.biz/",
             };
-            
+
             _unitTestActivity = new Activity("UnitTest").Start();
             _httpClient = new SimpleTradingHttpClient(_settingsModel.BrandUrl);
             _logger = Mock.Of<ILogger<BridgeService>>();
